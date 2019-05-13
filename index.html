@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="IE=edge">
+<title>template</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<header>
+<div class="header-contents">
+<h1>タイトル</h1>
+<h2>サブタイトル</h2>
+</div><!-- /.header-contents -->
+</header>
+<div class="main-wrapper">
+	<form action="#" id="form">
+		<input type="text" name="word">
+		<input type="submit" value="検索" >
+		<h2>東京オリンピックまで</h2>
+		 <p class="timer">あと<span id="day"></span>日<span id="hour"></span>時間<span id="min"></span>分<span id="sec"></span>秒</p>
+		 <style>
+		 	#day {
+		 		color: red;
+		 		font-size: 30px;
+		 	}
+
+		 	#hour{
+		 		color: red;
+		 		font-size: 30px;
+		 	}
+
+		 	#min {
+		 		color: red;
+		 		font-size: 30px;
+		 	}
+
+		 	#sec {
+		 		color: red;
+		 		font-size: 30px;
+		 	}
+		 </style>
+	</form>
+	<script>
+		let countdown = function(due) {
+			let now = new Date();
+
+			let rest = due.getTime() - now.getTime();
+			let sec = Math.floor(rest / 1000) % 60;
+			let min = Math.floor(rest / 1000 / 60) % 60;
+			let hours = Math.floor(rest / 1000 / 60 / 60) % 24;
+			let days = Math.floor(rest / 1000 / 60 / 60 / 24);
+			let count = [days, hours, min, sec];
+
+			return count;
+		 }
+
+		 let goal = new Date(2020, 6, 24);
+
+		 let recalc = function() {
+ 		 console.log(countdown(goal));
+		 let counter = countdown(goal);
+		 document.getElementById('day').textContent = counter[0];
+		 document.getElementById('hour').textContent = counter[1];
+		 document.getElementById('min').textContent = counter[2];
+		 document.getElementById('sec').textContent = counter[3];
+		 refresh();
+		}
+
+		let refresh = function() {
+			setTimeout(recalc, 1000);
+		}
+		recalc();
+
+	</script>
+</div><!-- /.main-wrapper -->
+
+<footer>JavaScript Samples</footer>
+</body>
+</html>
